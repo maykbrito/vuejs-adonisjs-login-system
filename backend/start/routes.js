@@ -19,6 +19,7 @@ Route.get('/', () => ({ greeting: 'Hello world in JSON' }));
 Route.group(() => {
   Route.post('login', 'UserController.login');
   Route.post('register', 'UserController.register');
-  Route.get(':id', 'UserController.show');
-  Route.get('/', 'UserController.index');
 }).prefix('user');
+
+Route.get('user/:id', 'UserController.show').middleware(['auth']);
+Route.get('user/', 'UserController.index').middleware(['auth']);
